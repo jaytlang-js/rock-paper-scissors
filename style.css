@@ -1,12 +1,19 @@
 * {
   font-family: "Chakra Petch", Arial, Helvetica, sans-serif;
-  margin: 8px 24px;
+  text-align: center;
 }
 
 html,
 body,
-.title-container {
+.all-content {
   height: 100%;
+  margin: 0;
+}
+
+.all-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title-container {
@@ -14,27 +21,41 @@ body,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  flex: auto;
 }
 
-h1 {
+.spaced {
+  margin: 8px 24px;
+}
+
+.title {
   font-weight: 100;
   background-color: darkorange;
   color: white;
 
   padding: 8px 16px;
   border-radius: 8px;
+}
 
+.animate-first {
   opacity: 0;
   animation: fade-in 0.5s forwards;
 }
 
-p {
-  font-weight: 500;
-  font-style: italic;
-
+.animate-second {
   opacity: 0;
   animation: fade-in 0.5s forwards;
-  animation-delay: 0.5s;
+  animation-delay: 1s;
+}
+
+.subtitle {
+  font-weight: 500;
+  font-style: italic;
+}
+
+a {
+  color: darkorange;
 }
 
 @keyframes fade-in {
