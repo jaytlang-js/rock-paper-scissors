@@ -1,0 +1,47 @@
+* {
+  font-family: "Chakra Petch", Arial, Helvetica, sans-serif;
+  margin: 8px 24px;
+}
+
+html,
+body,
+.title-container {
+  height: 100%;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-weight: 100;
+  background-color: darkorange;
+  color: white;
+
+  padding: 8px 16px;
+  border-radius: 8px;
+
+  opacity: 0;
+  animation: fade-in 0.5s forwards;
+}
+
+p {
+  font-weight: 500;
+  font-style: italic;
+
+  opacity: 0;
+  animation: fade-in 0.5s forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
