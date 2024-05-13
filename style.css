@@ -41,17 +41,24 @@ body,
 .animate-first {
   opacity: 0;
   animation: fade-in 0.5s forwards;
+  animation-delay: 0.5s;
 }
 
 .animate-second {
   opacity: 0;
   animation: fade-in 0.5s forwards;
-  animation-delay: 1s;
+  animation-delay: 1.5s;
 }
 
 .subtitle {
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
+}
+
+.gray-background {
+  background-color: rgb(230, 230, 230);
+  margin: 0px;
+  padding: 8px 24px;
 }
 
 a {
