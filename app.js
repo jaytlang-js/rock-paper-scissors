@@ -169,13 +169,15 @@ function shouldKeepGoing() {
 
   let response =
     prompt("Would you like to play again? Type 'yes' if so!") ?? "no";
-  keepPlaying = response.toLocaleLowerCase() === "yes";
+  let keepPlaying = response.toLocaleLowerCase() === "yes";
 
   if (keepPlaying) {
     writeMessage("Great! Starting anew", "bold");
   } else {
     writeMessage("Thanks for playing! See you later", "bold");
   }
+
+  return keepPlaying;
 }
 
 function start() {
