@@ -98,26 +98,27 @@ function playGame() {
   let computerScore = 0;
 
   let playRoundAndAdjustScore = (humanChoice, computerChoice) => {
-    let winner = WINNER_TIE;
+    let winner = playRound(humanChoice, computerChoice);
 
-    do {
-      winner = playRound(humanChoice, computerChoice);
+    if (winner === WINNER_HUMAN) {
+      humanScore++;
+    } else if (winner === WINNER_COMPUTER) {
+      computerScore++;
+    }
 
-      if (winner === WINNER_HUMAN) {
-        humanScore++;
-      } else if (winner === WINNER_COMPUTER) {
-        computerScore++;
-      }
-    } while (winner === WINNER_TIE);
+    return winner;
   };
 
   for (let i = 0; i < NUM_ROUNDS; i++) {
     writeMessage(`ROUND ${i + 1} / ${NUM_ROUNDS} !`, "orange");
 
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
+    let winner = WINNER_TIE;
+    do {
+      let humanChoice = getHumanChoice();
+      let computerChoice = getComputerChoice();
 
-    playRoundAndAdjustScore(humanChoice, computerChoice);
+      winner = playRoundAndAdjustScore(humanChoice, computerChoice);
+    } while (winner === WINNER_TIE);
   }
 
   if (humanScore > computerScore) {
