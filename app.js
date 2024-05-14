@@ -48,11 +48,6 @@ function getHumanChoice() {
   }
 }
 
-/* Scoring */
-
-let humanScore = 0;
-let computerScore = 0;
-
 /* Round-by-round gameplay */
 
 const WINNER_HUMAN = "human";
