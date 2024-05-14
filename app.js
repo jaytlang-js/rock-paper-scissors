@@ -3,6 +3,12 @@
 const TEST_ITERATIONS = 5;
 const VALID_MOVES = ["rock", "paper", "scissors"];
 
+const WINNER_HUMAN = "human";
+const WINNER_COMPUTER = "computer";
+const WINNER_TIE = "tie";
+
+const NUM_ROUNDS = 5;
+
 /* Pretty printing */
 
 function writeMessage(message, type) {
@@ -52,10 +58,6 @@ function getHumanChoice() {
 
 /* Round-by-round gameplay */
 
-const WINNER_HUMAN = "human";
-const WINNER_COMPUTER = "computer";
-const WINNER_TIE = "tie";
-
 /* From TOP: "Move your playRound function and score variables so
  *  that they’re declared inside of the new playGame function"
  *
@@ -90,8 +92,6 @@ function playRound(humanChoice, computerChoice) {
 
   return humanWins ? WINNER_HUMAN : WINNER_COMPUTER;
 }
-
-const NUM_ROUNDS = 5;
 
 function playGame() {
   let humanScore = 0;
