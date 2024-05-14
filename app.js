@@ -59,6 +59,16 @@ function clearScore() {
 
 /* Round-by-round gameplay */
 
+const WINNER_HUMAN = "human";
+const WINNER_COMPUTER = "computer";
+
+/* From TOP: "Move your playRound function and score variables so
+ *  that they’re declared inside of the new playGame function"
+ *
+ * I refuse on principle because I've already written a test function for
+ *  playRound; therefore to prove my knowledge of function assignments
+ *  I'll create a mini-closure that wraps this in `playGame`
+ */
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     writeMessage("It's a tie!", "bold");
@@ -79,12 +89,12 @@ function playRound(humanChoice, computerChoice) {
   }
 
   if (humanWins) {
-    humanScore++;
     writeMessage(`You win! ${humanChoice} beats ${computerChoice}`, "bold");
   } else {
-    computerScore++;
     writeMessage(`You lose! ${computerChoice} beats ${humanChoice}`, "bold");
   }
+
+  return humanWins ? WINNER_HUMAN : WINNER_COMPUTER;
 }
 
 /* Unit tests */
