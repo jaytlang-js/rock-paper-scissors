@@ -191,7 +191,10 @@ function start() {
 
 testComputerChoice();
 testPlayRound();
-// testHumanChoice(); // probably don't call me on the hot startup path
+// testHumanChoice(); // probably don't call me on the hot startup path,
+//                    // because it interferes with the user experience,
+//                    // but let's leave the method in place in case we ever
+//                    // want to test this
 
 writeMessage("Welcome to Rock Paper Scissors!", "orange");
 writeMessage("Call start() to begin the game.", "italic");
