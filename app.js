@@ -144,13 +144,6 @@ function testComputerChoice() {
   console.groupEnd();
 }
 
-function testHumanChoice() {
-  for (let i = 0; i < 3; i++) {
-    let result = getHumanChoice();
-    writeMessage(`Human selected ${result}`);
-  }
-}
-
 function testPlayRound() {
   console.groupCollapsed("Tests for `testPlayRound()`");
 
@@ -191,10 +184,6 @@ function start() {
 
 testComputerChoice();
 testPlayRound();
-// testHumanChoice(); // probably don't call me on the hot startup path,
-//                    // because it interferes with the user experience,
-//                    // but let's leave the method in place in case we ever
-//                    // want to test this
 
 writeMessage("Welcome to Rock Paper Scissors!", "orange");
 writeMessage("Call start() to begin the game.", "italic");
