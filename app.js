@@ -1,3 +1,5 @@
+"use strict";
+
 const TEST_ITERATIONS = 5;
 const VALID_MOVES = ["rock", "paper", "scissors"];
 
@@ -106,7 +108,7 @@ function playGame() {
       } else if (winner === WINNER_COMPUTER) {
         computerScore++;
       }
-    } while (winner !== WINNER_TIE);
+    } while (winner === WINNER_TIE);
   };
 
   for (let i = 0; i < NUM_ROUNDS; i++) {
