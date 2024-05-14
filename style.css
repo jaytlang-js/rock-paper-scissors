@@ -5,12 +5,12 @@
 
 html,
 body,
-#all-content {
+#main-container {
   height: 100%;
   margin: 0;
 }
 
-#all-content {
+#main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
