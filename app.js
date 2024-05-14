@@ -7,7 +7,7 @@ function writeMessage(message, type) {
   let style = "";
 
   switch (type) {
-    case "welcome":
+    case "orange":
       style = "font-weight: bold; color: darkorange";
       break;
     case "bold":
@@ -116,6 +116,18 @@ function playGame() {
       computerScore++;
     }
   }
+
+  if (humanWon) {
+    writeMessage(
+      `Congratulations, you won ${humanScore} to ${computerScore}!`,
+      "orange"
+    );
+  } else {
+    writeMessage(
+      `You lost the game, ${humanScore} to ${computerScore}`,
+      "orange"
+    );
+  }
 }
 
 /* Unit tests */
@@ -180,5 +192,5 @@ testComputerChoice();
 testPlayRound();
 // testHumanChoice(); // probably don't call me on the hot startup path
 
-writeMessage("Welcome to Rock Paper Scissors!", "welcome");
+writeMessage("Welcome to Rock Paper Scissors!", "orange");
 writeMessage("Call start() to begin the game.", "italic");
