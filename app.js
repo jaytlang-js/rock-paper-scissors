@@ -53,10 +53,6 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-function clearScore() {
-  humanScore = computerScore = 0;
-}
-
 /* Round-by-round gameplay */
 
 const WINNER_HUMAN = "human";
@@ -97,6 +93,31 @@ function playRound(humanChoice, computerChoice) {
   return humanWins ? WINNER_HUMAN : WINNER_COMPUTER;
 }
 
+const NUM_ROUNDS = 5;
+
+function playGame() {
+  let humanScore = 0;
+  let computerScore = 0;
+
+  let playRoundAndReturnIfHumanWon = (humanChoice, computerChoice) => {
+    return playRound(humanChoice, computerChoice) === WINNER_HUMAN;
+  };
+
+  for (let i = 0; i < NUM_ROUNDS; i++) {
+    writeMessage(`ROUND ${i + 1} / ${NUM_ROUNDS} !`);
+
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+
+    let humanWon = playRoundAndReturnIfHumanWon();
+    if (humanWon) {
+      humanScore++;
+    } else {
+      computerScore++;
+    }
+  }
+}
+
 /* Unit tests */
 
 function testComputerChoice() {
@@ -129,8 +150,6 @@ function testPlayRound() {
     }
   }
 
-  // Put the score back; playRound will have mutated it
-  clearScore();
   console.groupEnd();
 }
 
@@ -143,7 +162,7 @@ function start() {
   do {
     playGame();
 
-    writeMessage("Would you like to play again?", "orange");
+    writeMessage("Would you like to play again?", "italic");
 
     let response =
       prompt("Would you like to play again? Type 'yes' if so!") ?? "no";
