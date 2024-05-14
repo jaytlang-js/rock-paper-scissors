@@ -96,12 +96,17 @@ function playGame() {
   let computerScore = 0;
 
   let playRoundAndAdjustScore = (humanChoice, computerChoice) => {
-    let winner = playRound(humanChoice, computerChoice);
-    if (winner === WINNER_HUMAN) {
-      humanScore++;
-    } else if (winner === WINNER_COMPUTER) {
-      computerScore++;
-    }
+    let winner = WINNER_TIE;
+
+    do {
+      winner = playRound(humanChoice, computerChoice);
+
+      if (winner === WINNER_HUMAN) {
+        humanScore++;
+      } else if (winner === WINNER_COMPUTER) {
+        computerScore++;
+      }
+    } while (winner !== WINNER_TIE);
   };
 
   for (let i = 0; i < NUM_ROUNDS; i++) {
@@ -156,24 +161,27 @@ function testPlayRound() {
 
 /* Putting it all together! */
 
+function shouldKeepGoing() {
+  writeMessage("Would you like to play again?", "italic");
+
+  let response =
+    prompt("Would you like to play again? Type 'yes' if so!") ?? "no";
+  keepPlaying = response.toLocaleLowerCase() === "yes";
+
+  if (keepPlaying) {
+    writeMessage("Great! Starting anew", "bold");
+  } else {
+    writeMessage("Thanks for playing! See you later", "bold");
+  }
+}
+
 function start() {
   // Let the games begin!
   let keepPlaying = true;
 
   do {
     playGame();
-
-    writeMessage("Would you like to play again?", "italic");
-
-    let response =
-      prompt("Would you like to play again? Type 'yes' if so!") ?? "no";
-    keepPlaying = response.toLocaleLowerCase() === "yes";
-
-    if (keepPlaying) {
-      writeMessage("Great! Starting anew", "bold");
-    } else {
-      writeMessage("Thanks for playing! See you later", "bold");
-    }
+    keepPlaying = shouldKeepGoing();
   } while (keepPlaying);
 }
 
