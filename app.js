@@ -138,6 +138,23 @@ function testPlayRound() {
 
 function start() {
   // Let the games begin!
+  let keepPlaying = true;
+
+  do {
+    playGame();
+
+    writeMessage("Would you like to play again?", "orange");
+
+    let response =
+      prompt("Would you like to play again? Type 'yes' if so!") ?? "no";
+    keepPlaying = response.toLocaleLowerCase() === "yes";
+
+    if (keepPlaying) {
+      writeMessage("Great! Starting anew", "bold");
+    } else {
+      writeMessage("Thanks for playing! See you later", "bold");
+    }
+  } while (keepPlaying);
 }
 
 testComputerChoice();
