@@ -1,6 +1,8 @@
 const TEST_ITERATIONS = 5;
 const VALID_MOVES = ["rock", "paper", "scissors"];
 
+/* Pretty printing */
+
 function writeMessage(message, type) {
   let style = "";
 
@@ -19,20 +21,11 @@ function writeMessage(message, type) {
   console.log(`%c${message}`, style);
 }
 
+/* Computer and human input */
+
 function getComputerChoice() {
   let index = Math.floor(Math.random() * VALID_MOVES.length);
   return VALID_MOVES[index];
-}
-
-function testComputerChoice() {
-  console.groupCollapsed("Tests for `getComputerChoice()`");
-
-  for (let i = 0; i < TEST_ITERATIONS; i++) {
-    let result = getComputerChoice();
-    writeMessage(`Computer choice: ${result}`);
-  }
-
-  console.groupEnd();
 }
 
 function getHumanChoice() {
@@ -55,15 +48,16 @@ function getHumanChoice() {
   }
 }
 
-function testHumanChoice() {
-  for (let i = 0; i < 3; i++) {
-    let result = getHumanChoice();
-    writeMessage(`Human selected ${result}`);
-  }
-}
+/* Scoring */
 
 let humanScore = 0;
 let computerScore = 0;
+
+function clearScore() {
+  humanScore = computerScore = 0;
+}
+
+/* Round-by-round gameplay */
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
@@ -93,8 +87,24 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function clearScore() {
-  humanScore = computerScore = 0;
+/* Unit tests */
+
+function testComputerChoice() {
+  console.groupCollapsed("Tests for `getComputerChoice()`");
+
+  for (let i = 0; i < TEST_ITERATIONS; i++) {
+    let result = getComputerChoice();
+    writeMessage(`Computer choice: ${result}`);
+  }
+
+  console.groupEnd();
+}
+
+function testHumanChoice() {
+  for (let i = 0; i < 3; i++) {
+    let result = getHumanChoice();
+    writeMessage(`Human selected ${result}`);
+  }
 }
 
 function testPlayRound() {
@@ -113,6 +123,8 @@ function testPlayRound() {
   clearScore();
   console.groupEnd();
 }
+
+/* Putting it all together! */
 
 function start() {
   // Let the games begin!
