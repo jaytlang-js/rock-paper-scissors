@@ -62,8 +62,14 @@ function testHumanChoice() {
   }
 }
 
+function start() {
+  // Let the games begin!
+  let humanScore = 0;
+  let computerScore = 0;
+}
+
 testComputerChoice();
-// testHumanChoice();
+// testHumanChoice(); // probably don't call me on the hot startup path
 
 writeMessage("Welcome to Rock Paper Scissors!", "welcome");
 writeMessage("Call start() to begin the game.", "italic");
