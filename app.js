@@ -154,8 +154,8 @@ function testHumanChoice() {
 function testPlayRound() {
   console.groupCollapsed("Tests for `testPlayRound()`");
 
-  for (humanChoice of VALID_MOVES) {
-    for (computerChoice of VALID_MOVES) {
+  for (let humanChoice of VALID_MOVES) {
+    for (let computerChoice of VALID_MOVES) {
       writeMessage(
         `Trying { human: ${humanChoice} ; computer: ${computerChoice} }`
       );
