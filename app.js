@@ -1,4 +1,5 @@
 const TEST_ITERATIONS = 5;
+const VALID_MOVES = ["rock", "paper", "scissors"];
 
 function writeMessage(message, type) {
   let style = "";
@@ -11,7 +12,7 @@ function writeMessage(message, type) {
       style = "font-weight: bold";
       break;
     case "italic":
-      style = "font-weight: italic";
+      style = "font-style: italic";
       break;
   }
 
@@ -19,10 +20,8 @@ function writeMessage(message, type) {
 }
 
 function getComputerChoice() {
-  let options = ["rock", "paper", "scissors"];
-  let index = Math.floor(Math.random() * options.length);
-
-  return options[index];
+  let index = Math.floor(Math.random() * VALID_MOVES.length);
+  return VALID_MOVES[index];
 }
 
 function testComputerChoice() {
@@ -36,6 +35,35 @@ function testComputerChoice() {
   console.groupEnd();
 }
 
-writeMessage("Welcome to Rock Paper Scissors!", "welcome");
+function getHumanChoice() {
+  writeMessage("Waiting for user input...", "italic");
+
+  for (;;) {
+    let rawInput =
+      prompt("Please enter one of 'rock', 'paper', or 'scissors'") ?? "";
+    let input = rawInput.toLocaleLowerCase();
+
+    if (VALID_MOVES.includes(input)) {
+      return input;
+    } else {
+      console.error(
+        "%cInvalid input!%c Please enter one of 'rock', 'paper', or 'scissors'.",
+        "font-weight: bold",
+        "font-weight: regular"
+      );
+    }
+  }
+}
+
+function testHumanChoice() {
+  for (let i = 0; i < 3; i++) {
+    let result = getHumanChoice();
+    writeMessage(`Human selected ${result}`);
+  }
+}
 
 testComputerChoice();
+// testHumanChoice();
+
+writeMessage("Welcome to Rock Paper Scissors!", "welcome");
+writeMessage("Call start() to begin the game.", "italic");
