@@ -62,13 +62,64 @@ function testHumanChoice() {
   }
 }
 
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    writeMessage("It's a tie!", "bold");
+    return;
+  }
+
+  let humanWins = false;
+  switch (humanChoice) {
+    case "rock":
+      humanWins = computerChoice === "scissors";
+      break;
+    case "paper":
+      humanWins = computerChoice === "rock";
+      break;
+    case "scissors":
+      humanWins = computerChoice === "paper";
+      break;
+  }
+
+  if (humanWins) {
+    humanScore++;
+    writeMessage(`You win! ${humanChoice} beats ${computerChoice}`, "bold");
+  } else {
+    computerScore++;
+    writeMessage(`You lose! ${computerChoice} beats ${humanChoice}`, "bold");
+  }
+}
+
+function clearScore() {
+  humanScore = computerScore = 0;
+}
+
+function testPlayRound() {
+  console.groupCollapsed("Tests for `testPlayRound()`");
+
+  for (humanChoice of VALID_MOVES) {
+    for (computerChoice of VALID_MOVES) {
+      writeMessage(
+        `Trying { human: ${humanChoice} ; computer: ${computerChoice} }`
+      );
+      playRound(humanChoice, computerChoice);
+    }
+  }
+
+  // Put the score back; playRound will have mutated it
+  clearScore();
+  console.groupEnd();
+}
+
 function start() {
   // Let the games begin!
-  let humanScore = 0;
-  let computerScore = 0;
 }
 
 testComputerChoice();
+testPlayRound();
 // testHumanChoice(); // probably don't call me on the hot startup path
 
 writeMessage("Welcome to Rock Paper Scissors!", "welcome");
