@@ -57,6 +57,7 @@ let computerScore = 0;
 
 const WINNER_HUMAN = "human";
 const WINNER_COMPUTER = "computer";
+const WINNER_TIE = "tie";
 
 /* From TOP: "Move your playRound function and score variables so
  *  that they’re declared inside of the new playGame function"
@@ -68,7 +69,7 @@ const WINNER_COMPUTER = "computer";
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     writeMessage("It's a tie!", "bold");
-    return;
+    return WINNER_TIE;
   }
 
   let humanWins = false;
@@ -99,25 +100,25 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  let playRoundAndReturnIfHumanWon = (humanChoice, computerChoice) => {
-    return playRound(humanChoice, computerChoice) === WINNER_HUMAN;
+  let playRoundAndAdjustScore = (humanChoice, computerChoice) => {
+    let winner = playRound(humanChoice, computerChoice);
+    if (winner === WINNER_HUMAN) {
+      humanScore++;
+    } else if (winner === WINNER_COMPUTER) {
+      computerScore++;
+    }
   };
 
   for (let i = 0; i < NUM_ROUNDS; i++) {
-    writeMessage(`ROUND ${i + 1} / ${NUM_ROUNDS} !`);
+    writeMessage(`ROUND ${i + 1} / ${NUM_ROUNDS} !`, "orange");
 
     let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
 
-    let humanWon = playRoundAndReturnIfHumanWon();
-    if (humanWon) {
-      humanScore++;
-    } else {
-      computerScore++;
-    }
+    playRoundAndAdjustScore(humanChoice, computerChoice);
   }
 
-  if (humanWon) {
+  if (humanScore > computerScore) {
     writeMessage(
       `Congratulations, you won ${humanScore} to ${computerScore}!`,
       "orange"
